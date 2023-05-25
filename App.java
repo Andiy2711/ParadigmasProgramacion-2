@@ -3,9 +3,19 @@ package com.pp2;
 public class App {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		System.out.println("Hello Wolrd <3");
-	
+		Worker worker = new Worker();
+		Thread t1 = new Thread();
+		t1.start();
+
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+
+		worker.setTerminated(true);
+		System.out.println("Finished...");
+
 	}
 
 }
