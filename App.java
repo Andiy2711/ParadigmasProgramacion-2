@@ -1,49 +1,41 @@
 package com.pp2;
 
-public class App {
+class Runner1 implements Runnable {
 
-	private static int counter = 0;
-		
-	public static synchronized void increment() {
-		++counter;
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		for (int i=0; i<10; i++)
+			System.out.println("Runner 1: " + i);
+	}
+	
+}
+
+
+class Runner2 implements Runnable {
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		for (int i=0; i<10; i++)
+			System.out.println("Runner 2: " + i);
 	}
 
-	public static void process() {
+}
 
-		Thread t1 = new Thread(new Runnable() {
 
-			@Override
-			public void run() {
-				for (int i = 0; i < 100; ++i)
-					increment();
-			}
-		});
-
-		Thread t2 = new Thread(new Runnable() {
-
-			@Override
-			public void run() {
-				for (int i = 0; i < 100; ++i)
-					increment();
-			}
-		});
+public class App {
+	
+	public static void main (String [] args) {
 		
+		Thread t1 = new Thread (new Runner1());
+		Thread t2 = new Thread (new Runner2());
 		t1.start();
 		t2.start();
-		
-		try {
-			t1.join();
-			t2.join();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
 	}
-public static void main(String[] args) {
-
-	process();
-	System.out.println(counter);
+	
+	
+	
 	
 }
-}
-
-	
+		
